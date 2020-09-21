@@ -8,7 +8,7 @@ cats = ['masjha', 'dasha', 'sasha', 'lika' ]
 text.sort_and_print_list(names=cats)
 text.make_pizza('mushrooms', 'green peppers', 'extra cheese', 'humph')
 
-filename = 'main.cfg'
+filename = 'conf/main.cfg'
 
 with open(filename) as file_object:
     contents = file_object.read()
@@ -16,7 +16,7 @@ with open(filename) as file_object:
 
 
 
-filename = 'setup3.txt'
+filename = 'output/setup3.txt'
 
 with open(filename, 'w') as file_object:
     file_object.write(input("type: ")+ '\n')

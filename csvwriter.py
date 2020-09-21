@@ -1,6 +1,6 @@
 import pyodbc
 import csv
-filename = 'report2.csv'
+filename = 'output/report2.csv'
 
 sql = (r'select tuser.id as ID, '
        r'tuser.name as Name, '
@@ -18,7 +18,7 @@ conn = pyodbc.connect(
     r'PWD=fdmsamho;'
 )
 data = conn.cursor()
-data.execute(sql2)
+data.execute(sql)
 csv.register_dialect('unixpwd', delimiter=';', quoting=csv.QUOTE_NONE)
 with open(filename, 'w', newline='') as file_object:
     writer = csv.writer(file_object)

@@ -1,7 +1,7 @@
 import csv
 branch = 'EU'
 counter = 0
-filename = 'report2.csv'
+filename = 'output/report2.csv'
 print('|| N || ID || Name || Card || Issue || Access Group || Department || Branch ||')
 with open(filename, "r", newline="") as file:
     reader = csv.reader(file)
