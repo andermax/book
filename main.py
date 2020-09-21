@@ -1,5 +1,5 @@
 import textworks as text
-
+import dbconnect
 cats = ['masjha', 'dasha', 'sasha', 'lika' ]
 
 
@@ -15,6 +15,7 @@ with open(filename) as file_object:
     print(contents)
 
 
+
 filename = 'setup3.txt'
 
 with open(filename, 'w') as file_object:
@@ -24,4 +25,6 @@ with open(filename, 'w') as file_object:
 with open(filename) as file_object:
     for line in file_object:
         print(line.rstrip())
+
+db = dbconnect.get_dbconn('data/FPMS.mdb','fdmsamho')
 
