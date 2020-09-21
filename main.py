@@ -1,5 +1,5 @@
 import textworks as text
-import dbconnect
+import csvwriter
 cats = ['masjha', 'dasha', 'sasha', 'lika' ]
 
 
@@ -26,5 +26,5 @@ with open(filename) as file_object:
     for line in file_object:
         print(line.rstrip())
 
-db = dbconnect.get_dbconn('data/FPMS.mdb','fdmsamho')
+db = csvwriter.get_dbconn('data/FPMS.mdb', 'fdmsamho')
 
