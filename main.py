@@ -1,30 +1,46 @@
-import textworks as text
-import csvwriter
-cats = ['masjha', 'dasha', 'sasha', 'lika' ]
+from TextFiles import Readfile
+import pyodbc
+
+
+sql = (r'select tuser.id as ID, '
+       r'tuser.name as Name, '
+       r'tuser.cardnum as Card, '
+       r'tuser.remark as Issue, '
+       r'tgroup.name as Access, '
+       r'tuser.company as Department, '
+       r'tuser.dept as Company '
+       r'from tuser left join tgroup on tuser.group_id = tgroup.id  '
+       r'order by tuser.name;')
 
 
 
 
-text.sort_and_print_list(names=cats)
-text.make_pizza('mushrooms', 'green peppers', 'extra cheese', 'humph')
+def dbconnect(sql):
+    conn = pyodbc.connect(
+        r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};'
+        r'DBQ=data/FPMS.mdb;'
+        r'PWD=fdmsamho;'
+    )
+    data = conn.cursor()
+    data.execute(sql)
+    return data
 
-filename = 'conf/main.cfg'
-
-with open(filename) as file_object:
-    contents = file_object.read()
-    print(contents)
-
+def readFile(self,link):
+    with open(link) as file_object:
+        for line in file_object:
+            print(line.rstrip())
 
 
-filename = 'output/setup3.txt'
+def writeFile(self, data, link):
+    with open(link, 'w') as file_object:
+        file_object.write(data)
 
-with open(filename, 'w') as file_object:
-    file_object.write(input("type: ")+ '\n')
-    file_object.write(input("type: "))
+data = dbconnect(sql)
+counter =0
+branch = 'BANK'
 
-with open(filename) as file_object:
-    for line in file_object:
-        print(line.rstrip())
-
-db = csvwriter.get_dbconn('data/FPMS.mdb', 'fdmsamho')
-
+for row in data:
+        if branch in row[6]:
+            counter += 1
+            print('|', counter, '|', row[0], '|', row[1], '|', row[2], '|', row[3], '|', row[4], '|', row[5], '|',
+                  row[6])
